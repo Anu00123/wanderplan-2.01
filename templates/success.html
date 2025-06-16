@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | Travel Explorer</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .success-card {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .success-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .checkmark-circle {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+        }
+        
+        .checkmark {
+            color: white;
+            font-size: 50px;
+        }
+        
+        .btn-explore {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        .btn-explore:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="success-card bg-white p-5 text-center">
+                    <div class="checkmark-circle">
+                        <i class="fas fa-check checkmark"></i>
+                    </div>
+                    
+                    <h1 class="display-4 fw-bold mb-3" style="color: #2c3e50;">Thank You!</h1>
+                    <h3 class="mb-4" style="color: #7f8c8d;">Your travel request has been received</h3>
+                    
+                    <div class="success-message mb-5">
+                        <p class="lead">We've received your inquiry and our travel experts are already working on your dream vacation.</p>
+                        <p>You'll receive a confirmation email shortly with preliminary options. One of our specialists will contact you within <strong>24 hours</strong> to discuss the details.</p>
+                    </div>
+                    
+                    
+                    
+                    <div class="whats-next mb-5">
+                        <h4 class="mb-4" style="color: #3498db;">What Happens Next?</h4>
+                        <div class="row text-start">
+                            <div class="col-md-4 mb-3">
+                                <div class="d-flex">
+                                    <div class="me-3 text-primary" style="font-size: 24px;">1</div>
+                                    <div>
+                                        <h5>Initial Proposal</h5>
+                                        <p class="text-muted">Receive customized itinerary options within 24 hours</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="d-flex">
+                                    <div class="me-3 text-primary" style="font-size: 24px;">2</div>
+                                    <div>
+                                        <h5>Consultation</h5>
+                                        <p class="text-muted">Personalized video/phone consultation with your expert</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="d-flex">
+                                    <div class="me-3 text-primary" style="font-size: 24px;">3</div>
+                                    <div>
+                                        <h5>Finalize Plans</h5>
+                                        <p class="text-muted">Refine and book your perfect vacation package</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cta-buttons">
+                        <a href="{% url "home" %}" class="btn btn-explore me-3">
+                            <i class="fas fa-home me-2"></i>Back to Home
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Confetti Animation -->
+    <script>
+        // Simple confetti animation
+        function createConfetti() {
+            const colors = ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6'];
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = -10 + 'px';
+            document.body.appendChild(confetti);
+            
+            let rotation = Math.random() * 360;
+            let position = -10;
+            let opacity = 1;
+            let speed = 2 + Math.random() * 3;
+            
+            const fall = setInterval(() => {
+                position += speed;
+                rotation += 2;
+                opacity -= 0.01;
+                
+                confetti.style.transform = `translateY(${position}px) rotate(${rotation}deg)`;
+                confetti.style.opacity = opacity;
+                
+                if (position > window.innerHeight) {
+                    clearInterval(fall);
+                    confetti.remove();
+                }
+            }, 20);
+        }
+        
+        // Create confetti on load
+        window.onload = function() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(createConfetti, i * 50);
+            }
+            
+            // You can replace these with actual data from form submission
+            const urlParams = new URLSearchParams(window.location.search);
+            document.getElementById('refNumber').textContent = urlParams.get('ref') || 'TRV-' + new Date().getFullYear() + '-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+            document.getElementById('contactEmail').textContent = urlParams.get('email') || 'your@email.com';
+            document.getElementById('destination').textContent = urlParams.get('destination') || 'Bali, Indonesia';
+            document.getElementById('submissionDate').textContent = new Date().toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <!-- Logo and Brand -->
+        <a class="navbar-brand" href="#">
+            <div class="logo-container">
+                <img class="img-logos" src="{% static "img/logo.png" %}" alt="Logo" class="img-logo">
+                <div class="text-logo">
+                    <h4>WanderPlan</h4>
+                    <p>Consultancy</p>
+                </div>
+            </div>
+        </a>
+
+        <!-- Hamburger Menu Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "home" %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'destination' %}">Destination</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "about" %}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "contact" %}">Contact</a>
+                </li>
+            </ul>
+            
+           
+    {% if request.session.user_id %}
+    <!-- Show Logout Button if user is logged in -->
+    <a class="btn btn-outline-primary" href="{% url 'logout' %}" style="text-decoration: none;">
+        <span class="button__text">Logout</span>
+        <i class="fa-solid fa-right-to-bracket"></i>
+    </a>
+{% else %}
+    <!-- Show Get Started Button if user is NOT logged in -->
+    <a class="btn btn-outline-primary" href="{% url 'auth_page' %}" style="text-decoration: none;">
+        <span class="button__text">Get Started</span>
+        <i class="fa-solid fa-right-to-bracket"></i>
+    </a>
+{% endif %}
+
+
+            
+            
+        </div>
+    </div>
+</nav>
+
+

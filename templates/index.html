@@ -1,0 +1,278 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Wander Plan</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static "css/styles.css" %}">
+        <link rel="stylesheet" href="{% static "css/sec-4.css" %}">
+        <!--Bootstrap Link-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <!--Font Awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!--Google Font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+    
+        <!--Nav Start-->
+        {% include "Navbar.html" %}
+        <!--Nav End-->
+
+     <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title typewriter">Discover Your Perfect <span> Journey</span></h1>
+                <h1 class="visit">Visit <span class="change-text"></span></h1>
+            </div>
+        </div>
+     </section>
+
+
+
+
+     <section class="best-packages py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold display-5" style="font-family: 'Montserrat', sans-serif;">Best Packages</h2>
+            <p class="text-muted fs-5" style="font-family: 'Poppins', sans-serif;">Our Top Rated Packages</p>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Row 1 -->
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.pexels.com/photos/2166559/pexels-photo-2166559.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Bali Vacation">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold" style="font-family: 'Poppins', sans-serif;">Bali Paradise</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.pexels.com/photos/32430841/pexels-photo-32430841/free-photo-of-eiffel-tower-view-from-river-seine-in-paris.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Paris Tour">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold" style="font-family: 'Poppins', sans-serif;">Romantic Paris</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.pexels.com/photos/2525899/pexels-photo-2525899.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Maldives Beach">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold" style="font-family: 'Poppins', sans-serif;">Maldives Retreat</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Row 2 -->
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.pexels.com/photos/30792059/pexels-photo-30792059/free-photo-of-mount-fuji-reflecting-on-yamanaka-lake-in-tokyo.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Tokyo City">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold" style="font-family: 'Poppins', sans-serif;">Tokyo Adventure</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.pexels.com/photos/32360563/pexels-photo-32360563/free-photo-of-historic-dome-of-santissimo-nome-di-maria-in-rome.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Rome History">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold" style="font-family: 'Poppins', sans-serif;">Historic Rome</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.pexels.com/photos/297303/pexels-photo-297303.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="New York City">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold" style="font-family: 'Poppins', sans-serif;">New York Explorer</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+    <!-- Travel Memories Section -->
+<section class="travel-memories py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Left Side - Text Content -->
+            <div class="col-lg-5 mb-4 mb-lg-0">
+                <h2 class="display-4 fw-bold mb-4" style="font-family: 'Playfair Display', serif; line-height: 1.2;">
+                    Travel to Make Memories <span class="text-primary">All Around</span> the World
+                </h2>
+                <div class="d-flex flex-column" style="gap: 1.5rem;">
+                    <p class="mb-0 fs-5" style="font-family: 'Poppins', sans-serif; line-height: 1.6;">
+                        <i class="fas fa-compass text-primary me-2"></i> Discover breathtaking destinations that will leave you speechless
+                    </p>
+                    <p class="mb-0 fs-5" style="font-family: 'Poppins', sans-serif; line-height: 1.6;">
+                        <i class="fas fa-camera text-primary me-2"></i> Capture moments that will become treasures for a lifetime
+                    </p>
+                    <p class="mb-0 fs-5" style="font-family: 'Poppins', sans-serif; line-height: 1.6;">
+                        <i class="fas fa-heart text-primary me-2"></i> Create stories worth sharing with generations to come
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Side - Image Cards -->
+            <div class="col-lg-7">
+                <div class="row g-4">
+                    <!-- Card 1 (Larger) -->
+                    <div class="col-md-8">
+                        <div class="card border-0 overflow-hidden shadow-lg" style="border-radius: 20px;">
+                            <img src="https://images.pexels.com/photos/165505/pexels-photo-165505.jpeg?auto=compress&cs=tinysrgb&w=600" class="img-fluid w-100" style="height: 300px; object-fit: cover;" alt="Happy travelers">
+                            <div class="card-img-overlay d-flex flex-column justify-content-end bg-dark-gradient">
+                                <h5 class="text-white fs-3 fw-bold" style="font-family: 'Montserrat', sans-serif;">Romantic Getaways</h5>
+                                <p class="text-white-50 mb-0">For those special moments together</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 2 (Smaller) -->
+                    <div class="col-md-4">
+                        <div class="card border-0 overflow-hidden shadow-lg" style="border-radius: 20px; height: 300px;">
+                            <img src="https://images.pexels.com/photos/6617778/pexels-photo-6617778.jpeg?auto=compress&cs=tinysrgb&w=600" class="img-fluid w-100 h-100" style="object-fit: cover;" alt="Family vacation">
+                            <div class="card-img-overlay d-flex flex-column justify-content-end bg-dark-gradient">
+                                <h5 class="text-white fs-4 fw-bold" style="font-family: 'Montserrat', sans-serif;">Family Adventures</h5>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 3 (Smaller) -->
+                    <div class="col-md-4">
+                        <div class="card border-0 overflow-hidden shadow-lg" style="border-radius: 20px; height: 250px;">
+                            <img src="https://images.pexels.com/photos/32369564/pexels-photo-32369564/free-photo-of-people-relaxing-by-the-scenic-blue-lake.jpeg?auto=compress&cs=tinysrgb&w=600" class="img-fluid w-100 h-100" style="object-fit: cover;" alt="Friends traveling">
+                            <div class="card-img-overlay d-flex flex-column justify-content-end bg-dark-gradient">
+                                <h5 class="text-white fs-4 fw-bold" style="font-family: 'Montserrat', sans-serif;">Friends Trips</h5>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 4 (Larger) -->
+                    <div class="col-md-8">
+                        <div class="card border-0 overflow-hidden shadow-lg" style="border-radius: 20px; height: 250px;">
+                            <img src="https://images.pexels.com/photos/29124203/pexels-photo-29124203/free-photo-of-scenic-view-of-malaga-at-sunset.jpeg?auto=compress&cs=tinysrgb&w=600" class="img-fluid w-100 h-100" style="object-fit: cover;" alt="Solo traveler">
+                            <div class="card-img-overlay d-flex flex-column justify-content-end bg-dark-gradient">
+                                <h5 class="text-white fs-3 fw-bold" style="font-family: 'Montserrat', sans-serif;">Solo Explorations</h5>
+                                <p class="text-white-50 mb-0">Discover yourself through travel</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+   
+  <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h5 class="section-title">What We Serve</h5>
+                    <h2 class="section-subtitle">Our Top Values</h2>
+                </div>
+            </div>
+            
+            <div class="services-container">
+                <!-- Travel Packages Card -->
+                <div class="service-card-wrapper">
+                    <div class="service-card text-center">
+                        <i class="fas fa-plane service-icon"></i>
+                        <h3 class="service-title">Travel Packages</h3>
+                        <p class="service-description">
+                            Discover our curated travel packages with flights, hotels, and activities all in one place.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Ticket Booking Card -->
+                <div class="service-card-wrapper">
+                    <div class="service-card text-center">
+                        <i class="fas fa-ticket-alt service-icon"></i>
+                        <h3 class="service-title">Ticket Booking</h3>
+                        <p class="service-description">
+                            Book flights, trains, and event tickets with our easy-to-use platform and best prices.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Custom Itineraries Card -->
+                <div class="service-card-wrapper">
+                    <div class="service-card text-center">
+                        <i class="fas fa-route service-icon"></i>
+                        <h3 class="service-title">Custom Itineraries</h3>
+                        <p class="service-description">
+                            Get personalized travel plans tailored to your preferences and budget.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Travel Guide Support Card -->
+                <div class="service-card-wrapper">
+                    <div class="service-card text-center">
+                        <i class="fas fa-headset service-icon"></i>
+                        <h3 class="service-title">Travel Guide Support</h3>
+                        <p class="service-description">
+                            24/7 customer support and local guides to make your journey smooth and memorable.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+      <!-- Footer -->
+      {% include "Footer.html" %}
+
+      
+
+
+
+
+
+
+
+
+        
+        <script src="{% static "js/script.js" %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+</html>

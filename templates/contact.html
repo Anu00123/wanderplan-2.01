@@ -1,0 +1,373 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Wander Plan</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    
+    <!--Bootstrap Link-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!--Nav Start-->
+    {% include "Navbar.html" %}
+    <!--Nav End-->
+
+    <!-- Beautiful Contact Form Section 
+    <section class="contact-form-section py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="text-center mb-5">
+                        <h2 class="fw-bold mb-4">Get in <span class="text-danger">Touch</span></h2>
+                        <p class="lead text-muted">Our travel experts are ready to craft your perfect journey</p>
+                        <div class="divider mx-auto"
+                            style="width: 80px; height: 3px; background: linear-gradient(to right, #3498db, #2ecc71); border-radius: 3px;">
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-lg overflow-hidden">
+                        <div class="row g-0"> -->
+                            <!-- Beautiful Travel Image 
+                            <div class="col-md-5 d-none d-md-block">
+                                <div class="h-100"
+                                    style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80') center/cover;">
+                                    <div class="d-flex flex-column h-100 p-4 justify-content-end">
+                                        <h4 class="text-white mb-3">"The journey of a thousand miles begins with a
+                                            single step"</h4>
+                                        <p class="text-white-50 mb-0">- Lao Tzu</p>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <!-- Enhanced Form 
+                            <form method="POST" action="{% url 'contact' %}" id="contactForm">
+                                <div class="col-md-7">
+                                    <div class="p-4 p-md-5">
+                                        <h3 class="mb-4" style="color: #2c3e50;">Send Us a Message</h3>
+
+                                        {% csrf_token %}-->
+                                        <!-- Name Field 
+                                        <div class="form-group mb-4">
+                                            <label for="fullName"
+                                                class="form-label small text-uppercase fw-bold text-muted">Your Full
+                                                Name</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-transparent border-end-0">
+                                                    <i class="far fa-user text-primary"></i>
+                                                </span>
+                                                <input type="text" class="form-control border-start-0 ps-2"
+                                                    id="fullName" name="fullName"
+                                                    style="height: 50px; border-radius: 0 8px 8px 0 !important;">
+                                            </div>
+                                        </div> -->
+
+                                        <!-- Email Field 
+                                        <div class="form-group mb-4">
+                                            <label for="emailAddress"
+                                                class="form-label small text-uppercase fw-bold text-muted">Email
+                                                Address</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-transparent border-end-0">
+                                                    <i class="far fa-envelope text-primary"></i>
+                                                </span>
+                                                <input type="email" class="form-control border-start-0 ps-2"
+                                                    id="emailAddress" name="emailAddress"
+                                                    style="height: 50px; border-radius: 0 8px 8px 0 !important;">
+                                            </div>
+                                        </div> -->
+
+                                        <!-- Phone Field 
+                                        <div class="form-group mb-4">
+                                            <label for="phoneNumber"
+                                                class="form-label small text-uppercase fw-bold text-muted">Phone
+                                                Number</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-transparent border-end-0">
+                                                    <i class="fas fa-mobile-alt text-primary"></i>
+                                                </span>
+                                                <input type="tel" class="form-control border-start-0 ps-2"
+                                                    id="phoneNumber" name="phoneNumber"
+                                                    style="height: 50px; border-radius: 0 8px 8px 0 !important;">
+                                            </div>
+                                        </div> -->
+
+                                        <!-- Subject
+                                        <div class="form-group mb-4">
+                                            <label for="travelType"
+                                                class="form-label small text-uppercase fw-bold text-muted">Subject</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-transparent border-end-0">
+                                                    <i class="fas fa-globe-americas text-primary"></i>
+                                                </span>
+                                                <select class="form-select border-start-0 ps-2" id="travelType" name="travelType"
+                                                    style="height: 50px; border-radius: 0 8px 8px 0 !important;">
+                                                    <option selected>Choose a topic</option>
+                                                    <option value="1">Package Inquiry</option>
+                                                    <option value="2">Booking Assistance</option>
+                                                    <option value="3">Custom Trip Request</option>
+                                                    <option value="4">General Question</option>
+                                                </select>
+                                            </div>
+                                        </div>  -->
+
+                                        <!-- Message Field 
+                                        <div class="form-group mb-4">
+                                            <label for="travelDetails"
+                                                class="form-label small text-uppercase fw-bold text-muted">Message</label>
+                                            <div class="input-group">
+                                                <span
+                                                    class="input-group-text bg-transparent align-items-start pt-3 border-end-0">
+                                                    <i class="far fa-edit text-primary"></i>
+                                                </span>
+                                                <textarea class="form-control border-start-0 ps-2" id="travelDetails" name="travelDetails"
+                                                    rows="4" placeholder=""
+                                                    style="border-radius: 0 8px 8px 0 !important;"></textarea>
+                                            </div>
+                                        </div> -->
+
+                                        <!-- Submit Button 
+                                        <div class="d-grid mt-4">
+                                            <button type="submit" class="btn btn-primary py-3 fw-bold"
+                                                style="border-radius: 8px; background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%); border: none; letter-spacing: 1px;">
+                                                <i class="fas fa-paper-plane me-2"></i> SEND TRAVEL REQUEST
+                                            </button> -->
+
+                                            <!-- Add this just before the submit button 
+                                            <div class="d-none" id="formLoading">
+                                                <div class="text-center">
+                                                    <div class="spinner-border text-primary" role="status">
+                                                        <span class="visually-hidden">Loading...</span>
+                                                    </div>
+                                                    <p class="mt-2">Sending your message...</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div> -->
+
+                    <!-- Alternative Contact Options 
+                    <div class="text-center mt-5">
+                        <p class="text-muted mb-2">Prefer other ways to connect?</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="#" class="btn btn-outline-primary mx-2 px-4 rounded-pill">
+                                <i class="fas fa-phone-alt me-2"></i> Call Us
+                            </a>
+                            <a href="#" class="btn btn-outline-success mx-2 px-4 rounded-pill">
+                                <i class="fab fa-whatsapp me-2"></i> WhatsApp
+                            </a>
+                            <a href="#" class="btn btn-outline-info mx-2 px-4 rounded-pill">
+                                <i class="far fa-comment-dots me-2"></i> Live Chat
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Success Modal
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center p-5">
+                    <div class="success-animation">
+                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                        </svg>
+                    </div>
+                    <h3 class="mt-4 mb-3">Message Sent!</h3>
+                    <p class="mb-4">Thank you for contacting us. We'll get back to you soon.</p>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </form> -->
+
+    
+
+
+
+
+     <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="auth-container">
+                    <!-- Header -->
+                    <div class="auth-header text-center">
+                        <h2 id="auth-title">Contact Us</h2>
+                        <p id="auth-subtitle">We'd love to hear from you!</p>
+                    </div>
+                    
+                    <!-- Body -->
+                    <div class="auth-body">
+                        <!-- Contact Form -->
+                        <form  cass="auth-form" method="POST" action="{% url 'contact' %}" id="contactForm">
+                            {% csrf_token %}
+                            
+                            <div class="form-group mb-4">
+                                            <label for="fullName"
+                                                class="form-label small text-uppercase fw-bold text-muted">Your Full
+                                                Name</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-transparent border-end-0">
+                                                    <i class="far fa-user text-primary"></i>
+                                                </span>
+                                                <input type="text" class="form-control border-start-0 ps-2"
+                                                    id="fullName" name="fullName"
+                                                    style="height: 50px; border-radius: 0 8px 8px 0 !important;">
+                                            </div>
+                                        </div>
+                            
+                            <!-- Email Input -->
+                            <div class="form-group mb-4">
+                                            <label for="emailAddress"
+                                                class="form-label small text-uppercase fw-bold text-muted">Email
+                                                Address</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-transparent border-end-0">
+                                                    <i class="far fa-envelope text-primary"></i>
+                                                </span>
+                                                <input type="email" class="form-control border-start-0 ps-2"
+                                                    id="emailAddress" name="emailAddress"
+                                                    style="height: 50px; border-radius: 0 8px 8px 0 !important;">
+                                            </div>
+                                        </div>
+
+                            <!-- number Input -->
+                            <div class="form-group mb-4">
+                                            <label for="phoneNumber"
+                                                class="form-label small text-uppercase fw-bold text-muted">Phone
+                                                Number</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-transparent border-end-0">
+                                                    <i class="fas fa-mobile-alt text-primary"></i>
+                                                </span>
+                                                <input type="tel" class="form-control border-start-0 ps-2"
+                                                    id="phoneNumber" name="phoneNumber"
+                                                    style="height: 50px; border-radius: 0 8px 8px 0 !important;">
+                                            </div>
+                                        </div>
+                            
+                            <!-- Subject Input -->
+                            <div class="form-group mb-4">
+                                            <label for="travelType"
+                                                class="form-label small text-uppercase fw-bold text-muted">Subject</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-transparent border-end-0">
+                                                    <i class="fas fa-globe-americas text-primary"></i>
+                                                </span>
+                                                <select class="form-select border-start-0 ps-2" id="travelType" name="travelType"
+                                                    style="height: 50px; border-radius: 0 8px 8px 0 !important;">
+                                                    <option selected>Choose a topic</option>
+                                                    <option value="1">Package Inquiry</option>
+                                                    <option value="2">Booking Assistance</option>
+                                                    <option value="3">Custom Trip Request</option>
+                                                    <option value="4">General Question</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                            
+                            <!-- Message Input -->
+                            <div class="form-group mb-4">
+                                            <label for="travelDetails"
+                                                class="form-label small text-uppercase fw-bold text-muted">Message</label>
+                                            <div class="input-group">
+                                                <span
+                                                    class="input-group-text bg-transparent align-items-start pt-3 border-end-0">
+                                                    <i class="far fa-edit text-primary"></i>
+                                                </span>
+                                                <textarea class="form-control border-start-0 ps-2" id="travelDetails" name="travelDetails"
+                                                    rows="4" placeholder=""
+                                                    style="border-radius: 0 8px 8px 0 !important;"></textarea>
+                                            </div>
+                                        </div>
+                            
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-auth w-100 text-white mb-3">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Additional Contact Info -->
+                    <div class="contact-info mt-4 text-center">
+                        <div class="contact-item mb-3">
+                            <i class="fas fa-envelope me-2"></i>
+                            <span>wanderplanconsultancy@gmail.com</span>
+                        </div>
+                        <div class="contact-item mb-3">
+                            <i class="fas fa-phone me-2"></i>
+                            <span>+91 7012411674</span>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    {% include "Footer.html" %}
+
+    <script src="{% static "js/script.js" %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

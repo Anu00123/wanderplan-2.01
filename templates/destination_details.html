@@ -1,0 +1,241 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Wander Plan</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static "css/styles.css" %}">
+        <!--Bootstrap Link-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <!--Font Awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!--Google Font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+    
+        <!--Nav Start-->
+        {% include "Navbar.html" %}
+        <!--Nav End-->
+
+
+
+
+<section class="package-detail-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Package Images -->
+                 {% for packages in images %}
+                   
+                <div class="package-main-image mb-4">
+                    <img src="{{ packages.image }}" alt="{{ packages.caption }}" class="img-fluid rounded">
+                </div>
+                
+                {% endfor %}
+                <!-- Package Gallery (if you have additional images) -->
+                
+                
+                
+                
+                <!-- Package Details -->
+                <div class="package-content">
+                    <h1 class="package-title">{{ package.title }}</h1>
+                    <div class="package-meta mb-4">
+                        <span class="package-location me-3">
+                            <i class="fas fa-map-marker-alt"></i> {{ package.location }}
+                        </span>
+                        <span class="package-rating">
+                            {% for _ in rating_stars.full_stars %}
+                                <i class="fas fa-star"></i>
+                            {% endfor %}
+                            {% if rating_stars.half_star %}
+                                <i class="fas fa-star-half-alt"></i>
+                            {% endif %}
+                            {% for _ in rating_stars.empty_stars %}
+                                <i class="far fa-star"></i>
+                            {% endfor %}
+                            <span>({{ package.review_count }} reviews)</span>
+                        </span>
+                    </div>
+                    
+                    <div class="package-highlights mb-5">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="highlight-item">
+                                    <i class="fas fa-clock"></i>
+                                    <h5>Duration</h5>
+                                    <p>{{ package.duration }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="highlight-item">
+                                    <i class="fa-solid fa-indian-rupee-sign"></i>
+                                    <h5>Price</h5>
+                                    <p>₹{{ package.price }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="highlight-item">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <h5>Availability</h5>
+                                    <p>Year Round</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="package-description mb-5">
+                        <h3 class="section-title">About This Package</h3>
+                        <p>{{ package.description }}</p>
+                    </div>
+                    
+                    <div class="package-itinerary mb-5">
+                        <h3 class="section-title">description</h3>
+                        <div class="itinerary-content">
+                            {{ package.description|linebreaks }}
+                        </div>
+                    </div>
+                    
+                    <div class="package-includes mb-5">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 class="section-title">What's Included</h3>
+                                <ul class="included-list">
+                                    {{ package.includes|linebreaks }}
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h3 class="section-title">What's Not Included</h3>
+                                <ul class="excluded-list">
+                                    {{ package.excludes|linebreaks }}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="package-booking-card">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h4 class="card-title">Book This Package</h4>
+                            <div class="price mb-3">
+                                <span class="from">From</span>
+                                <span class="amount">₹{{ package.price }}</span>
+                                <span class="per-person">per person</span>
+                            </div>
+                            
+    <form method="POST" >
+    {% csrf_token %}
+    <!-- Add a hidden field for package ID -->
+    <input type="hidden" name="package_id" id="package_id" value="{{ package.pk }}">
+    <div class="mb-3">
+        <label for="checkin" class="form-label">Check In</label>
+        <input type="date" class="form-control" id="check_in" name="check_in" required>
+    </div>
+    <div class="mb-3">
+        <label for="checkout" class="form-label">Check Out</label>
+        <input type="date" class="form-control" id="check_out" name="check_out" required>
+    </div>
+    <div class="mb-3">
+        <label for="guests" class="form-label">Guests</label>
+        <input type="number" class="form-control" id="guests" name="guests" required>
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="mb-3">
+        <label for="phone-number" class="form-label">Phone Numer</label>
+        <input type="text" class="form-control" id="phone_number" name="phone_number" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Book Now</button>
+</form>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Related Packages -->
+        {% if related_packages %}
+        <div class="related-packages mt-5">
+            <h3 class="section-title">You May Also Like</h3>
+            <div class="row">
+                {% for package in related_packages %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="package-card">
+                        <img src="{{ package.main_image.url }}" alt="{{ package.title }}" class="package-img">
+                        <div class="package-body">
+                            <h5 class="package-title">{{ package.title }}</h5>
+                            <div class="package-rating">
+                                {% with stars=package.get_rating_stars %}
+                                    {% for _ in stars.full_stars %}
+                                        <i class="fas fa-star"></i>
+                                    {% endfor %}
+                                    {% if stars.half_star %}
+                                        <i class="fas fa-star-half-alt"></i>
+                                    {% endif %}
+                                    {% for _ in stars.empty_stars %}
+                                        <i class="far fa-star"></i>
+                                    {% endfor %}
+                                {% endwith %}
+                                <span>({{ package.review_count }})</span>
+                            </div>
+                            <p class="package-location"><i class="fas fa-map-marker-alt"></i> {{ package.location }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="package-price">${{ package.price }}</span>
+                                <span class="package-duration">{{ package.duration }}</span>
+                            </div>
+                            <div class="text-center mt-3">
+                                <a href="{% url 'package_detail' pk=package.pk %}" class="view-details">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+      <!-- Footer -->
+      {% include "Footer.html" %}
+
+      
+
+
+
+
+
+
+
+
+        
+        <script src="{% static "js/script.js" %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+</html>

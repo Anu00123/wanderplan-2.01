@@ -1,0 +1,38 @@
+/* Contact Page Styles */
+.contact-info {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.contact-item {
+    font-size: 1rem;
+    color: #495057;
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #f8f9fa;
+    border-radius: 50%;
+    color: #495057;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #0d6efd;
+    color: white;
+    text-decoration: none;
+}
+
+/* Adjust textarea height */
+.form-control {
+    min-height: 150px;
+}

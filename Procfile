@@ -1,0 +1,1 @@
+web: gunicorn your_project.wsgi --workers 2 --threads 4
