@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Payment | WanderPlan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .payment-card {
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            border: none;
+        }
+        .payment-header {
+            background: linear-gradient(135deg, #4361ee 0%, #3f37c9 100%);
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+        }
+        .upi-qr-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        #upiQrCode {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+        .countdown-timer {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f72585;
+        }
+        .form-control {
+            border-radius: 8px;
+            padding: 12px 15px;
+            border: 1px solid #ced4da;
+        }
+        .btn-primary {
+            background-color: #4361ee;
+            border: none;
+            padding: 12px 0;
+            font-weight: 500;
+        }
+        .btn-primary:hover {
+            background-color: #3a56d4;
+        }
+        @media (max-width: 576px) {
+            #upiQrCode {
+                width: 150px;
+                height: 150px;
+            }
+            .payment-card {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card payment-card">
+                    <div class="card-header payment-header py-3">
+                        <h3 class="mb-0 text-center"><i class="fas fa-shield-alt me-2"></i> Complete Your Payment</h3>
+                    </div>
+                    <div class="card-body p-4 p-md-5">
+                        <!-- Plan Details -->
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <h5 class="fw-bold">Plan Details</h5>
+                                <div class="d-flex justify-content-between border-bottom py-2">
+                                    <span>Plan:</span>
+                                    <span class="fw-bold" id="planName">Standard Plan</span>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <h5 class="fw-bold">Amount Payable</h5>
+                                <div class="display-4 fw-bold text-primary mb-2">₹<span id="planPrice">{{plan.daily_price}}</span></div>
+                                <div class="countdown-timer">
+                                    <i class="fas fa-clock me-2"></i>
+                                    <span id="countdown">05:00</span> remaining
+                                </div>
+                            </div>
+                        </div>
+                            
+                        <!-- UPI Payment -->
+                        <div class="text-center mb-4">
+                            <h4 class="fw-bold mb-3"><i class="fas fa-qrcode me-2"></i> Pay via UPI</h4>
+                            <div class="upi-qr-container">
+                                <canvas id="upiQrCode"></canvas>
+                                <div class="input-group mt-3 mx-auto" style="max-width: 300px;">
+                                    <input type="text" class="form-control" id="upiId" value="anuvindp@fam" readonly>
+                                    <button class="btn btn-outline-secondary" type="button" id="copyUpiBtn">
+                                        <i class="far fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                                <p class="text-muted small mt-2">Scan QR code or send to UPI ID</p>
+                            </div>
+                        </div>
+
+                        <!-- Payment Form -->
+                        <form method="POST" id="paymentForm" action="{% url "success_payment" %}">
+                            {% csrf_token %}
+                            <h4 class="fw-bold mb-3"><i class="fas fa-user-circle me-2"></i> Your Details</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="fullName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="fullName" name="fullName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="age" class="form-label">Age</label>
+                                    <input type="number" class="form-control" id="age" required min="1">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="aadharNumber" class="form-label">Aadhar Number</label>
+                                    <input type="text" class="form-control" id="aadharNumber" required minlength="12" maxlength="12">
+                                </div>
+                                <div class="col-12">
+                                    <label for="tripName" class="form-label">Trip Name</label>
+                                    <input type="text" class="form-control" id="tripName" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="transactionId" class="form-label">Transaction ID</label>
+                                    <input type="text" class="form-control" id="transactionId" required>
+                                    <small class="text-muted">Enter the UPI transaction ID after payment</small>
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <button type="submit" class="btn btn-primary w-100 py-3 fw-bold">
+                                        <i class="fas fa-lock me-2"></i> CONFIRM PAYMENT
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize variables
+        let timeLeft = 300; // 5 minutes in seconds
+        let countdownInterval;
+
+        // Generate QR code
+        function generateQRCode() {
+            const upiString = `upi://pay?pa=anuvindp@fam&pn=WanderPlan&am=${document.getElementById('planPrice').textContent}&tn=TravelInsurance`;
+            QRCode.toCanvas(document.getElementById('upiQrCode'), upiString, {
+                width: 200,
+                margin: 1,
+                color: {
+                    dark: '#000000',
+                    light: '#ffffff'
+                }
+            }, function(error) {
+                if (error) console.error(error);
+            });
+        }
+
+        // Start countdown timer
+        function startCountdown() {
+            countdownInterval = setInterval(function() {
+                timeLeft--;
+                
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                document.getElementById('countdown').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    alert('Payment session has expired. Please refresh the page to start again.');
+                }
+            }, 1000);
+        }
+
+        // Copy UPI ID
+        document.getElementById('copyUpiBtn').addEventListener('click', function() {
+            const upiId = document.getElementById('upiId').value;
+            navigator.clipboard.writeText(upiId).then(() => {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                }, 2000);
+            });
+        });
+
+       
+            // Simulate payment processing
+            setTimeout(() => {
+                // Redirect to success page with transaction ID
+                window.location.href = `/payment-success/?txn=${paymentData.transaction_id}`;
+            }, 1000);
+
+
+            generateQRCode();
+            startCountdown();
+    </script>
+</body>
+</html>

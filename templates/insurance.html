@@ -1,0 +1,968 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Wander Plan - Travel Insurance</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    <!-- Bootstrap Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4cc9f0;
+            --warning-color: #f72585;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary-color);
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .icon-box {
+            transform: scale(1.1);
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+        
+        .plan-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(67, 97, 238, 0.2);
+        }
+        
+        .plan-card .card-header {
+            padding: 1.5rem;
+            border-bottom: none;
+        }
+        
+        .popular-plan {
+            border: 2px solid var(--primary-color);
+            position: relative;
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background-color: var(--warning-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.3);
+        }
+        
+        .payment-method {
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        
+        .payment-method:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.1);
+        }
+        
+        .payment-method.active {
+            border-color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+        
+        .payment-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            color: #6c757d;
+        }
+        
+        .payment-method.active .payment-icon {
+            color: var(--primary-color);
+        }
+        
+        .form-control {
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+        }
+        
+        .accordion-item {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .accordion-button {
+            font-weight: 600;
+            padding: 1.25rem;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: transparent;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(67, 97, 238, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0); }
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 3rem 0;
+                text-align: center;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .floating-img {
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="insurance-page">
+    <!-- Navigation -->
+    {% include "Navbar.html" %}
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content animate__animated animate__fadeInLeft">
+                    <h1 class="display-4 fw-bold mb-4">Travel With Confidence</h1>
+                    <p class="lead mb-4">Explore the world worry-free with comprehensive travel insurance coverage tailored to your adventures.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#plans" class="btn btn-light btn-lg px-4 me-2 animate__animated animate__pulse animate__infinite animate__slower">
+                            <i class="fas fa-shield-alt me-2"></i> View Plans
+                        </a>
+                        <a href="#quote" class="btn btn-outline-light btn-lg px-4">
+                            <i class="fas fa-calculator me-2"></i> Get a Quote
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 animate__animated animate__fadeInRight">
+                    <img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Happy traveler" class="img-fluid rounded-3 floating">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 section-title">Why Choose Our Travel Insurance</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm feature-card">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h5 class="card-title">Worldwide Coverage</h5>
+                            <p class="card-text">Protection in over 150 countries with 24/7 emergency assistance wherever you go.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm feature-card">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h5 class="card-title">Medical Protection</h5>
+                            <p class="card-text">Comprehensive medical coverage including COVID-19 and emergency evacuation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm feature-card">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box">
+                                <i class="fas fa-luggage-cart"></i>
+                            </div>
+                            <h5 class="card-title">Trip Protection</h5>
+                            <p class="card-text">Coverage for cancellations, delays, lost baggage, and unexpected interruptions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance Plans -->
+    <section id="plans" class="py-5">
+    <div class="container py-5">
+        <h2 class="text-center mb-5 section-title">Our Insurance Plans</h2>
+        <div class="row g-4">
+            {% for plan in plans %}
+            <div class="col-md-4 animate__animated animate__fadeInUp {% if forloop.counter == 1 %}animate__fast{% elif forloop.counter == 3 %}animate__fast{% endif %}">
+                <div class="card h-100 plan-card {% if plan.is_popular %}popular-plan{% endif %}">
+                    {% if plan.is_popular %}
+                    <div class="popular-badge">Most Popular</div>
+                    {% endif %}
+                    <div class="card-header {% if plan.is_popular %}bg-primary text-white{% else %}bg-light{% endif %} py-4 text-center">
+                        <h5 class="card-title mb-0">{{ plan.get_plan_type_display }}</h5>
+                    </div>
+                    <div class="card-body p-4 text-center">
+                        <h3 class="price mb-3">₹{{ plan.daily_price }}<span class="text-muted small"> / day</span></h3>
+                        <ul class="list-unstyled mb-4">
+                            <li class="py-2 border-bottom"><i class="fas fa-check text-success me-2"></i> Emergency Medical: ₹{{ plan.emergency_medical }}</li>
+                            <li class="py-2 border-bottom"><i class="fas fa-check text-success me-2"></i> Trip Cancellation: ₹{{ plan.trip_cancellation }}</li>
+                            <li class="py-2 border-bottom"><i class="fas fa-check text-success me-2"></i> Baggage Loss: ₹{{ plan.baggage_loss }}</li>
+                            <li class="py-2 border-bottom {% if not plan.adventure_sports %}text-muted{% endif %}">
+                                <i class="fas {% if plan.adventure_sports %}fa-check text-success{% else %}fa-times{% endif %} me-2"></i>
+                                {% if plan.plan_type == 'STANDARD' %}Limited {% endif %}Adventure Sports
+                            </li>
+                            <li class="py-2 {% if not plan.rental_car_coverage %}text-muted{% endif %}">
+                                <i class="fas {% if plan.rental_car_coverage %}fa-check text-success{% else %}fa-times{% endif %} me-2"></i>
+                                Rental Car Coverage
+                            </li>
+                        </ul>
+                        <a href="{% url 'payment' pk=plan.id %}" 
+                           class="btn {% if plan.is_popular %}btn-primary pulse{% else %}btn-outline-primary{% endif %} w-100">
+                            Select Plan
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+      
+    <!-- Get a Quote -->
+    <section id="quote" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 animate__animated animate__fadeIn">
+                    <div class="card border-0 shadow">
+                        <div class="card-body p-4 p-md-5">
+                            <h2 class="text-center mb-4">Get a Travel Insurance Quote</h2>
+                            <form id="insuranceQuoteForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="trip_type" class="form-label">Trip Type</label>
+                                        <select class="form-select" id="trip_type" name="trip_type" required>
+                                            <option value="" selected disabled>Select trip type</option>
+                                            <option value="single">Single Trip</option>
+                                            <option value="annual">Annual Multi-Trip</option>
+                                            <option value="family">Family Vacation</option>
+                                            <option value="business">Business Trip</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="destination" class="form-label">Destination</label>
+                                        <select class="form-select" id="destination" name="destination" required>
+                                            <option value="" selected disabled>Select destination</option>
+                                            <option value="europe">Europe</option>
+                                            <option value="asia">Asia</option>
+                                            <option value="america">North America</option>
+                                            <option value="worldwide">Worldwide</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="start_date" class="form-label">Start Date</label>
+                                        <input type="date" class="form-control" id="start_date" name="start_date" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="end_date" class="form-label">End Date</label>
+                                        <input type="date" class="form-control" id="end_date" name="end_date" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="travelers" class="form-label">Number of Travelers</label>
+                                        <select class="form-select" id="travelers" name="travelers" required>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6+">6+</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="age_range" class="form-label">Age Range</label>
+                                        <select class="form-select" id="age_range" name="age_range" required>
+                                            <option value="18-30">18-30</option>
+                                            <option value="31-50">31-50</option>
+                                            <option value="51-65">51-65</option>
+                                            <option value="65+">65+</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="adventure_sports" name="adventure_sports">
+                                            <label class="form-check-label" for="adventure_sports">
+                                                Include adventure sports coverage
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                                            <i class="fas fa-calculator me-2"></i> Get Quote
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment" class="py-5 d-none">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow">
+                        <div class="card-body p-4 p-md-5">
+                            <div class="text-center mb-4">
+                                <h2>Complete Your Purchase</h2>
+                                <p class="text-muted">Secure your travel insurance in just a few steps</p>
+                            </div>
+                            
+                            <!-- Progress Steps -->
+                            <div class="mb-5">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="step completed text-center">
+                                        <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <div class="step-title mt-2">Select Plan</div>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <hr class="progress-line active">
+                                    </div>
+                                    <div class="step active text-center">
+                                        <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                            2
+                                        </div>
+                                        <div class="step-title mt-2">Payment</div>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <hr class="progress-line">
+                                    </div>
+                                    <div class="step text-center">
+                                        <div class="step-number bg-light text-muted rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                            3
+                                        </div>
+                                        <div class="step-title mt-2">Confirmation</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h5 class="mb-3">Order Summary</h5>
+                                <div class="card bg-light p-3 mb-3 border-0">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Insurance Plan:</span>
+                                        <strong id="summary-plan">Standard Plan</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Coverage Duration:</span>
+                                        <strong id="summary-duration">7 days</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Travelers:</span>
+                                        <strong id="summary-travelers">2</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Adventure Sports:</span>
+                                        <strong id="summary-sports">No</strong>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="h5">Total:</span>
+                                        <strong class="price h4" id="summary-total">$55.93</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h5 class="mb-3">Select Payment Method</h5>
+                            
+                            <div class="payment-options mb-4">
+                                <div class="payment-method" data-method="credit">
+                                    <div class="d-flex align-items-center">
+                                        <div class="payment-icon-container">
+                                            <i class="fab fa-cc-visa payment-icon"></i>
+                                            <i class="fab fa-cc-mastercard payment-icon"></i>
+                                            <i class="fab fa-cc-amex payment-icon"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1">Credit/Debit Card</h6>
+                                            <p class="small text-muted mb-0">Visa, Mastercard, American Express</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="payment-method" data-method="googlepay">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fab fa-google-pay payment-icon"></i>
+                                        <div>
+                                            <h6 class="mb-1">Google Pay</h6>
+                                            <p class="small text-muted mb-0">Pay with your Google account</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="payment-method" data-method="paytm">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-wallet payment-icon"></i>
+                                        <div>
+                                            <h6 class="mb-1">Paytm</h6>
+                                            <p class="small text-muted mb-0">Fast and secure Paytm payments</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="payment-method" data-method="phonepe">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-mobile-alt payment-icon"></i>
+                                        <div>
+                                            <h6 class="mb-1">PhonePe</h6>
+                                            <p class="small text-muted mb-0">Pay using UPI through PhonePe</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Credit Card Form -->
+                            <div id="credit-card-form" class="d-none">
+                                <form id="paymentForm">
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <label for="cardNumber" class="form-label">Card Number</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+                                                <span class="input-group-text"><i class="far fa-credit-card"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="cardName" class="form-label">Name on Card</label>
+                                            <input type="text" class="form-control" id="cardName" placeholder="John Doe" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="cardExpiry" class="form-label">Expiry Date</label>
+                                            <input type="text" class="form-control" id="cardExpiry" placeholder="MM/YY" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="cardCvv" class="form-label">CVV</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="cardCvv" placeholder="123" required>
+                                                <span class="input-group-text"><i class="fas fa-question-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="3-digit code on back of your card"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <!-- UPI Form -->
+                            <div id="upi-form" class="d-none text-center py-4">
+                                <div class="mb-4">
+                                    <img src="https://via.placeholder.com/200x200?text=UPI+QR+Code" alt="UPI QR Code" class="img-fluid" style="max-width: 200px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                                </div>
+                                <div class="input-group mb-3 mx-auto" style="max-width: 400px;">
+                                    <input type="text" class="form-control" value="wanderplan@upi" readonly>
+                                    <button class="btn btn-outline-secondary" type="button" id="copyUpiId">
+                                        <i class="far fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                                <p class="text-muted small">Scan the QR code or send payment to our UPI ID</p>
+                            </div>
+                            
+                            <!-- Wallet Payment -->
+                            <div id="wallet-form" class="d-none text-center py-4">
+                                <div class="mb-4">
+                                    <img src="https://via.placeholder.com/150x80?text=Wallet+Logo" alt="Wallet Logo" class="img-fluid mb-3" id="wallet-logo" style="max-height: 80px;">
+                                </div>
+                                <button class="btn btn-primary btn-lg px-5">
+                                    <i class="fas fa-lock me-2"></i> Pay with <span id="wallet-name">Wallet</span>
+                                </button>
+                                <p class="text-muted small mt-3">You'll be redirected to secure payment page</p>
+                            </div>
+                            
+                            <div class="form-check mt-4">
+                                <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                <label class="form-check-label" for="termsCheck">
+                                    I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
+                                </label>
+                            </div>
+                            
+                            <div class="d-grid gap-2 mt-4">
+                                <button type="button" id="completePaymentBtn" class="btn btn-primary btn-lg py-3">
+                                    <i class="fas fa-lock me-2"></i> Complete Payment - <span id="payment-total">$55.93</span>
+                                </button>
+                                <button type="button" id="backToQuoteBtn" class="btn btn-outline-secondary">
+                                    <i class="fas fa-arrow-left me-2"></i> Back to Quote
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation Section -->
+    <section id="confirmation" class="py-5 d-none">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="card border-0 shadow">
+                        <div class="card-body p-5">
+                            <div class="mb-4">
+                                <div class="checkmark-circle animate__animated animate__bounceIn">
+                                    <div class="background"></div>
+                                    <div class="checkmark draw" style="font-size: 80px; color: var(--primary-color);">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 class="mb-3">Payment Successful!</h2>
+                            <p class="lead mb-4">Your travel insurance is now active. We've sent the details to your email.</p>
+                            <div class="card bg-light p-4 mb-4 text-start mx-auto" style="max-width: 500px;">
+                                <h5 class="mb-3">Policy Details</h5>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Policy Number:</span>
+                                    <strong>WP2023-789456</strong>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Coverage Dates:</span>
+                                    <strong id="confirmation-dates">Jun 15 - Jun 22, 2023</strong>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Travelers Covered:</span>
+                                    <strong id="confirmation-travelers">2</strong>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Total Paid:</span>
+                                    <strong class="price" id="confirmation-total">$55.93</strong>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center gap-3">
+                                <a href="#" class="btn btn-primary px-4">
+                                    <i class="fas fa-download me-2"></i> Download Policy
+                                </a>
+                                <a href="/" class="btn btn-outline-primary px-4">
+                                    <i class="fas fa-home me-2"></i> Back to Home
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 section-title">Frequently Asked Questions</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <!-- FAQ Items (same as before) -->
+                        <div class="accordion-item mb-3">
+                            <h3 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    What does travel insurance typically cover?
+                                </button>
+                            </h3>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Travel insurance typically covers trip cancellations, medical emergencies, lost or delayed baggage, travel delays, and emergency evacuations. Coverage varies by plan, so it's important to review the policy details before purchasing.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item mb-3">
+                            <h3 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    How soon before my trip should I buy insurance?
+                                </button>
+                            </h3>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    It's best to purchase travel insurance as soon as you book your trip. This ensures you're covered for any cancellations or interruptions that might occur before your departure. Many policies require purchase within 10-21 days of your initial trip deposit to qualify for certain benefits.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item mb-3">
+                            <h3 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Does travel insurance cover COVID-19 related issues?
+                                </button>
+                            </h3>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, many of our plans now include coverage for COVID-19 related medical expenses and trip interruptions. However, coverage for cancellations due to fear of travel or general outbreaks may be limited. Please review the specific policy details or contact us for more information.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item mb-3">
+                            <h3 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Can I extend my coverage if my trip is extended?
+                                </button>
+                            </h3>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, in most cases you can extend your coverage while you're traveling, provided you request the extension before your current policy expires and pay any additional premium. Contact our 24/7 assistance line to arrange an extension.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Footer -->
+    {% include "Footer.html" %}
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+        
+        // Set minimum date for start date picker to today
+        document.getElementById('start_date').min = new Date().toISOString().split('T')[0];
+        
+        // Update end date min date when start date changes
+        document.getElementById('start_date').addEventListener('change', function() {
+            document.getElementById('end_date').min = this.value;
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Form submission handling
+        document.getElementById('insuranceQuoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Calculate quote (simplified for demo)
+            const planPrice = 7.99; // Standard plan price
+            const travelers = parseInt(document.getElementById('travelers').value);
+            const startDate = new Date(document.getElementById('start_date').value);
+            const endDate = new Date(document.getElementById('end_date').value);
+            const duration = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+            const total = (planPrice * duration * travelers).toFixed(2);
+            
+            // Format dates for display
+            const startDateFormatted = startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            const endDateFormatted = endDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            
+            // Update payment summary
+            document.getElementById('summary-plan').textContent = 'Standard Plan';
+            document.getElementById('summary-duration').textContent = `${duration} days (${startDateFormatted} - ${endDateFormatted})`;
+            document.getElementById('summary-travelers').textContent = travelers;
+            document.getElementById('summary-sports').textContent = document.getElementById('adventure_sports').checked ? 'Yes' : 'No';
+            document.getElementById('summary-total').textContent = `$${total}`;
+            document.getElementById('payment-total').textContent = `$${total}`;
+            
+            // Update confirmation section
+            document.getElementById('confirmation-dates').textContent = `${startDateFormatted} - ${endDateFormatted}`;
+            document.getElementById('confirmation-travelers').textContent = travelers;
+            document.getElementById('confirmation-total').textContent = `$${total}`;
+            
+            // Show payment section
+            document.getElementById('quote').classList.add('d-none');
+            document.getElementById('payment').classList.remove('d-none');
+            document.getElementById('confirmation').classList.add('d-none');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Back to quote button
+        document.getElementById('backToQuoteBtn').addEventListener('click', function() {
+            document.getElementById('payment').classList.add('d-none');
+            document.getElementById('quote').classList.remove('d-none');
+            document.getElementById('confirmation').classList.add('d-none');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Payment method selection
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                // Remove active class from all methods
+                document.querySelectorAll('.payment-method').forEach(m => {
+                    m.classList.remove('active');
+                });
+                
+                // Add active class to selected method
+                this.classList.add('active');
+                
+                // Hide all payment forms
+                document.getElementById('credit-card-form').classList.add('d-none');
+                document.getElementById('upi-form').classList.add('d-none');
+                document.getElementById('wallet-form').classList.add('d-none');
+                
+                // Show appropriate payment form
+                const paymentMethod = this.getAttribute('data-method');
+                if (paymentMethod === 'credit') {
+                    document.getElementById('credit-card-form').classList.remove('d-none');
+                } else if (paymentMethod === 'googlepay' || paymentMethod === 'paytm' || paymentMethod === 'phonepe') {
+                    document.getElementById('wallet-form').classList.remove('d-none');
+                    const walletName = paymentMethod === 'googlepay' ? 'Google Pay' : 
+                                    paymentMethod === 'paytm' ? 'Paytm' : 'PhonePe';
+                    document.getElementById('wallet-name').textContent = walletName;
+                    document.getElementById('wallet-logo').src = `https://via.placeholder.com/150x80?text=${walletName}`;
+                }
+            });
+        });
+        
+        // Copy UPI ID button
+        document.getElementById('copyUpiId')?.addEventListener('click', function() {
+            const upiId = 'wanderplan@upi';
+            navigator.clipboard.writeText(upiId).then(() => {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                }, 2000);
+            });
+        });
+        
+        // Complete payment button
+        document.getElementById('completePaymentBtn').addEventListener('click', function() {
+            if (!document.getElementById('termsCheck').checked) {
+                alert('Please agree to the Terms & Conditions');
+                return;
+            }
+            
+            const selectedMethod = document.querySelector('.payment-method.active');
+            if (!selectedMethod) {
+                alert('Please select a payment method');
+                return;
+            }
+            
+            // Show loading state
+            this.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Processing...';
+            this.disabled = true;
+            
+            // Simulate payment processing
+            setTimeout(() => {
+                // Show confirmation section
+                document.getElementById('payment').classList.add('d-none');
+                document.getElementById('confirmation').classList.remove('d-none');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Reset payment button
+                this.innerHTML = '<i class="fas fa-lock me-2"></i> Complete Payment - <span id="payment-total">$55.93</span>';
+                this.disabled = false;
+                
+                // Reset forms
+                document.getElementById('insuranceQuoteForm').reset();
+                document.getElementById('paymentForm').reset();
+                document.getElementById('termsCheck').checked = false;
+            }, 2000);
+        });
+        
+        // Animate elements when they come into view
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.animate__animated');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.classList.add(element.dataset.animation);
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
